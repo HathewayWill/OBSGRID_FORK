@@ -24,6 +24,10 @@ AR		=	ar ru
 
 .F90.o:
 	$(RM) $@ $*.mod
+ifeq ($(F90_DIRECT_PREPROCESS),1)
+	$(FC) $(FFLAGS) -fpp $(CPPFLAGS) ${NETCDF_INC} -c $<
+else
 	$(CPP) $(CPPFLAGS) $(FDEFS) $< > $*.f
 	$(FC) $(FFLAGS) -c $*.f ${NETCDF_INC}
 	$(RM) $*.f
+endif

@@ -51,6 +51,21 @@ CFLAGS		=
 CPP		=	/usr/bin/cpp -C -P -traditional
 CPPFLAGS	=	
 
+
+###########################################################
+#ARCH	PC Linux x86_64, AOCC flang compiler with AOCC clang
+#
+FC              =       flang
+FFLAGS          =       -Mfreeform -Mbyteswapio -Ofast -ffast-math -fveclib=AMDLIBM
+F77FLAGS        =       -Mfixed -Mbyteswapio -Ofast -ffast-math -fveclib=AMDLIBM
+FNGFLAGS        =       $(FFLAGS)
+LDFLAGS         =       -Ofast -ffast-math -fveclib=AMDLIBM -lamdlibm
+CC              =       clang
+CFLAGS          =       -O3 -w
+CPP             =       /lib/cpp
+CPPFLAGS        =       -I. -P -DDEC -traditional
+RANLIB          =       llvm-ranlib
+
 ###########################################################
 #ARCH	PC Linux ia64, PGI compiler	
 #
@@ -76,6 +91,21 @@ CC		=	gcc
 CFLAGS		=	-w
 CPP		=	/lib/cpp 
 CPPFLAGS	=	-I. -C -P -DDEC -traditional
+
+
+###########################################################
+#ARCH	PC Linux i486 i586 i686 x86_64, Intel oneAPI compiler	
+#
+FC		=	ifx
+FFLAGS		=	-FR -convert big_endian
+F77FLAGS	=	-convert big_endian
+FNGFLAGS	=	$(FFLAGS)
+LDFLAGS		=	
+CC		=	icx
+CFLAGS		=	-w
+CPP		=	ifx 
+CPPFLAGS	=	-DDEC -I.
+F90_DIRECT_PREPROCESS	=	1
 
 ###########################################################
 #ARCH	PC Linux ia64, Intel compiler	
@@ -172,20 +202,6 @@ CPP		=	/usr/bin/cpp
 CPPFLAGS	=	-C -P -traditional
 RANLIB		=	
 LOCAL_LIBS	=	-L/usr/X11R6/lib -lX11
-
-###########################################################
-#ARCH   PC Linux x86_64, AOCC flang compiler with AOCC clang
-#
-FC              =       flang
-FFLAGS          =       -Mfreeform -Mbyteswapio -Ofast -ffast-math -fveclib=AMDLIBM
-F77FLAGS        =       -Mfixed -Mbyteswapio -Ofast -ffast-math -fveclib=AMDLIBM
-FNGFLAGS        =       $(FFLAGS)
-LDFLAGS         =       -Ofast -ffast-math -fveclib=AMDLIBM -lamdlibm
-CC              =       clang
-CFLAGS          =       -O3 -w
-CPP             =       /lib/cpp
-CPPFLAGS        =       -I. -P -DDEC -traditional
-RANLIB          =       llvm-ranlib
 
 ###########################################################
 #ARCH	NULL
